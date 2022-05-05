@@ -25,7 +25,7 @@ class LostScript(script.Script):
         for ds in self.inp.datasources:
             anno_file_path = ds.path
             fs = ds.get_fs()
-            lds = LOSTDataset(anno_file_path)
+            lds = LOSTDataset(anno_file_path, filesystem=fs)
             if self.get_arg('ignore_lbls') is not None:
                 lds.ignore_labels(self.get_arg('ignore_lbls'), col='anno_lbl', inplace=True)
             if self.get_arg('remap_path') is not None:
