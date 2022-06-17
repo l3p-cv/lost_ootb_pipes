@@ -23,3 +23,8 @@ Request all annotations from a dataset file (csv or parquet) in lost_dataset for
 ## two_stage
 ### Description
 This pipeline represents a two stage annotation process. In a first stage bbox annotations are collected and in the second stage this bboxes will be labeled by MIA.
+
+## mia_sia
+### Description
+In first stage use MIA to sort out images that are not of interest (e.g. empty images).
+In second stage annotate the selected images from stage one with SIA.
