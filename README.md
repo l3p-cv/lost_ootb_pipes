@@ -31,3 +31,5 @@ This pipeline represents a two stage annotation process. In a first stage bbox a
 ### Description
 In first stage use MIA to sort out images that are not of interest (e.g. empty images).
 In second stage annotate the selected images from stage one with SIA.
+
+jj-test
