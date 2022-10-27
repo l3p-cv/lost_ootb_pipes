@@ -2,7 +2,7 @@
 Out Of The Box pipelines for LOST image annotation tool
 
 This repo is currently under construction!
-Test
+
 ## sia
 ### Description
 Request single image annotations for all images of a specified data source.
