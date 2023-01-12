@@ -1,11 +1,14 @@
 from lost.pyapi import script
 import os
+import random
 
 ENVS = ['lost']
 ARGUMENTS = {'recursive' : { 'value': 'true',
                             'help': 'Walk recursive through folder structure'},
             'valid_imgtypes' : { 'value': "['.jpg', '.jpeg', '.png', '.bmp']",
-                            'help': 'Img types where annotations will be requested for!'}
+                            'help': 'Img types where annotations will be requested for!'},
+            'shuffle' : { 'value': 'false',
+                            'help': 'Shuffle images before requesting annotations for them.'}
             }
 class LostScript(script.Script):
     '''Request annotations for each image of an imageset.
@@ -27,14 +30,21 @@ class LostScript(script.Script):
         for ds in self.inp.datasources:
             media_path = ds.path
             fs = ds.get_fs()
+            path_list = []
             if self.get_arg('recursive'):
                 for root, dirs, files in fs.walk(media_path):
                     for f in files:
                         path = os.path.join(root, f)
-                        self.check_and_request(fs, path)
+                        path_list.append(path)
             else:
                 for img_path in fs.ls(media_path):
-                    self.check_and_request(fs, img_path)
+                    path_list.append(img_path)
+
+            if self.get_arg('shuffle'):
+                random.shuffle(path_list)
+
+            for img_path in path_list:
+                self.check_and_request(fs, img_path)
 
 if __name__ == "__main__":
     my_script = LostScript() 
