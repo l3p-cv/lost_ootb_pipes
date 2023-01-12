@@ -26,6 +26,11 @@ class LostScript(script.Script):
             anno_file_path = ds.path
             fs = ds.get_fs()
             lds = LOSTDataset(anno_file_path, filesystem=fs)
+            null_path = lds.df[self.get_arg('img_path_key')].isnull()
+            n_null_path_entries = len(lds.df[null_path])
+            if n_null_path_entries > 0:
+                lds.df = lds.df[~null_path]
+                self.logger.warning(f'Removed {n_null_path_entries} entries where img_path is None')
             if self.get_arg('ignore_lbls') is not None:
                 lds.ignore_labels(self.get_arg('ignore_lbls'), col='anno_lbl', inplace=True)
             if self.get_arg('remap_path') is not None:
@@ -38,6 +43,7 @@ class LostScript(script.Script):
                 original_img_keys = []
             else:
                 original_img_keys = self.get_arg('original_img_keys')
+            
             self.outp.request_lds_annos(lds, fs, original_anno_keys, original_img_keys, self.get_arg('img_path_key'))
 
 if __name__ == "__main__":
