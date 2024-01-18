@@ -42,6 +42,8 @@ class LostScript(script.Script):
 
             if self.get_arg('shuffle'):
                 random.shuffle(path_list)
+            else:
+                path_list = sorted(path_list)
 
             for img_path in path_list:
                 self.check_and_request(fs, img_path)
