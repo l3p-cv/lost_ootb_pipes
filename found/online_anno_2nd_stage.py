@@ -10,11 +10,11 @@ class LostScript(script.Script):
         sim_classes from first annotation stage will be used.
     '''
     def main(self):
-        possible_labels = []
         for i, img in enumerate(self.inp.img_annos):
             if img.iteration == self.iteration:
                 annos=[]
                 anno_types=[]
+                sim_class_list=[]
                 for bbox in img.iter_annos('bbox'):
                     try:
                         sim_class_list.append(bbox.to_df()['anno_lbl_id'].values[0])
