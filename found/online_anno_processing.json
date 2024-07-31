@@ -14,7 +14,7 @@
       "peN": 1,
       "peOut": [2],
       "script": {
-        "path": "found.request_annos_again.py",
+        "path": "found/request_annos_again.py",
         "description": "Request annotations for all images in a folder."
       }
     },
