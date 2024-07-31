@@ -14,7 +14,7 @@
       "peN": 1,
       "peOut": [2],
       "script": {
-        "path": "found/request_annos_again.py",
+        "path": "request_annos_again.py",
         "description": "Request annotations for all images in a folder."
       }
     },
@@ -55,7 +55,7 @@
       "peN": 3,
       "peOut": [4],
       "script": {
-        "path": "found/online_anno_2nd_stage.py",
+        "path": "online_anno_2nd_stage.py",
         "description": "Request annos for next stage."
       }
     },
